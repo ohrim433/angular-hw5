@@ -1,5 +1,5 @@
 <p>click user below</p>
-<div *ngFor="let user of users | filter: 'name': 'Vasyl': '='" appRandomBack>
+<div *ngFor="let user of users | filter: 'status': true: '='" appRandomBack>
   {{user | json}}
 </div>
 
