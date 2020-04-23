@@ -17,7 +17,7 @@ export class FilterPipe implements PipeTransform {
         break;
       }
       case ('='): {
-        value = value.filter((user) => user[filterKey] = filterValue);
+        value = value.filter((user) => user[filterKey] === filterValue);
         break;
       }
       case ('>='): {
