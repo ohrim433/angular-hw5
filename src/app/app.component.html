@@ -1,43 +1,40 @@
-<p>click user below</p>
-<div *ngFor="let user of users | filter: 'status': true: '='" appRandomBack>
-  {{user | json}}
-</div>
+<!--&lt;!&ndash;<app-todo *ngFor="let todo of todos"></app-todo>&ndash;&gt;-->
 
-<!--&lt;!&ndash;ngStyle&ndash;&gt;-->
-<!--<button (click)="toggleClass()" [ngStyle]="{backgroundColor: 'red'}">toggle class</button>-->
+<form [formGroup]="form">
+  <div class="form-input">
+    <label>id: </label>
+    <div>
+      <input formControlName="id" disabled="disabled" placeholder="{{todoArray.length}}">
+    </div>
+  </div>
+  <div class="form-input">
+    <label>title: </label>
+    <div>
+      <input formControlName="title">
+    </div>
+  </div>
+  <div class="form-input">
+    <label>body: </label>
+    <div>
+      <textarea formControlName="body" cols="20" rows="10"></textarea>
+    </div>
+  </div>
+  <div class="form-input">
+    <label>type: </label>
+    <select formControlName="type">
+      <option value="today">today</option>
+      <option value="tomorrow">tomorrow</option>
+      <option value="after tomorrow">after tomorrow</option>
+      <option value="next week">next week</option>
+      <option value="next month">next month</option>
+    </select>
+  </div>
+  <button (click)="addTodo()" [disabled]="form.invalid">Add todo</button>
+</form>
 
-<!--&lt;!&ndash;ngClass + class.       attribute directive&ndash;&gt;-->
-<!--<div [ngClass]="{target: classStatus}" [class.point]="true">-->
-<!--  {{'hello' | size: 'upper'}}-->
-<!--</div>-->
-
-<!--&lt;!&ndash;ngIf    structural directive&ndash;&gt;-->
-<!--<div *ngIf="classStatus">-->
-<!--  {{3.14654687 | number: '3.1-5'}}-->
-<!--  <br>-->
-<!--  {{0.25 | percent}}-->
-<!--  <br>-->
-<!--  {{'lorem' | uppercase}}-->
-<!--  <br>-->
-<!--  {{'IPSUM' | lowercase}}-->
-<!--  <br>-->
-<!--  {{'lorem ipsum' | titlecase}}-->
-<!--  <br>-->
-<!--  {{'Lorem' | uppercase | lowercase}}-->
-<!--  <br>-->
-<!--  {{100 | currency: 'GBP'}}-->
-<!--</div>-->
-
-<!--<div appRed>-->
-<!--  {{myDate | date: 'short'}}-->
-<!--</div>-->
-
-<!--<div *ngFor="let user of users">-->
-<!--  {{user | json}}-->
-<!--</div>-->
-
-<!--<div *ngFor="let item of {name: 'Vasyl', age: 31} | keyvalue">-->
-<!--  {{item.key}} {{item.value}}-->
-<!--</div>-->
-
+<p *ngIf="todoArray.length">Todos List:</p>
+<app-todo
+  *ngFor="let singleTodo of todoArray"
+  [todo]="singleTodo">
+</app-todo>
 
