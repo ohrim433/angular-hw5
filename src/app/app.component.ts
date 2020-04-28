@@ -26,5 +26,6 @@ export class AppComponent {
     this.singleTodo = {...this.form.value};
     this.singleTodo.id = this.todoArray.length;
     this.todoArray.push(this.singleTodo);
+    this.form.reset();
   }
 }
