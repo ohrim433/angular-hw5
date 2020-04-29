@@ -1,6 +1,21 @@
-<div class="form-input">
-  <div>{{todo.id}}</div>
-  <div>{{todo.title}}</div>
-  <div>{{todo.body}}</div>
-  <div>{{todo.type}}</div>
+<div class="form-input" *ngIf="!todo.status">
+  <div>Todo id: {{todo.id}}</div>
+  <div>Todo title - {{todo.title}}</div>
+  <div>Todo body - {{todo.body}}</div>
+  <div>Todo type - {{todo.type}}</div>
+  <div>
+    <button (click)="toggleDone()">
+      Set done
+    </button></div>
+</div>
+
+<div class="done-todo form-input" *ngIf="todo.status">
+  <div>Todo id: {{todo.id}}</div>
+  <div>Todo title - {{todo.title}}</div>
+  <div>Todo body - {{todo.body}}</div>
+  <div>Todo type - {{todo.type}}</div>
+  <div>
+    <button (click)="toggleDone()">
+      Set undone
+    </button></div>
 </div>

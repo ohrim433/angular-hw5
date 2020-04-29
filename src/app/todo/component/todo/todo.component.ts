@@ -16,4 +16,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleDone() {
+    this.todo.status = !this.todo.status;
+  }
 }

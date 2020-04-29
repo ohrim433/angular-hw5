@@ -3,4 +3,5 @@ export interface TodoModel {
   title: string;
   body: string;
   type: string;
+  status: boolean;
 }

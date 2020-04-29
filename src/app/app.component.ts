@@ -18,7 +18,8 @@ export class AppComponent {
       id: '',
       title: ['', Validators.required],
       body: ['', Validators.required],
-      type: ['', Validators.required]
+      type: ['', Validators.required],
+      status: ''
     });
   }
 
@@ -27,5 +28,27 @@ export class AppComponent {
     this.singleTodo.id = this.todoArray.length;
     this.todoArray.push(this.singleTodo);
     this.form.reset();
+  }
+
+  loadList() {
+    const loadList = JSON.parse(localStorage.getItem('todosList'));
+    if (!loadList) {
+      return alert('Nothing to load');
+    } else {
+      this.todoArray = [...loadList];
+      console.log(this.todoArray);
+    }
+  }
+
+  saveList() {
+    if (this.todoArray.length === 0) {
+      alert('Nothing to save');
+    } else {
+      localStorage.setItem('todosList', JSON.stringify(this.todoArray));
+    }
+  }
+
+  clearStorage() {
+    localStorage.clear();
   }
 }

@@ -7,3 +7,30 @@
   padding: 5px;
   margin-bottom: 3px;
 }
+
+.main-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container {
+  border: 2px solid lightseagreen;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 15px;
+  width: 40vw;
+}
+
+button {
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 180px;
+}
+
+input {
+  width: 95%;
+}
+
+.done-todo {
+  text-decoration: line-through;
+}
