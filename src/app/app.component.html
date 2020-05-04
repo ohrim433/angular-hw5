@@ -4,51 +4,14 @@
       <div class="form-input">
         <label>id: </label>
         <div>
-          <input formControlName="id" disabled="disabled" placeholder="{{todoArray.length}}">
+          <input formControlName="id" type="number">
         </div>
       </div>
-      <div class="form-input">
-        <label>title: </label>
-        <div>
-          <input formControlName="title">
-        </div>
-      </div>
-      <div class="form-input">
-        <label>body: </label>
-        <div>
-          <textarea formControlName="body" cols="20" rows="10"></textarea>
-        </div>
-      </div>
-      <div class="form-input">
-        <label>type: </label>
-        <select formControlName="type">
-          <option value="high">high</option>
-          <option value="middle">middle</option>
-          <option value="low">low</option>
-        </select>
-      </div>
       <div>
-        <button (click)="addTodo()" [disabled]="form.invalid">Add todo</button>
-      </div>
-      <div>
-        <button (click)="loadList()">Load list</button>
-      </div>
-      <div>
-        <button (click)="saveList()">Save list</button>
-      </div>
-      <div>
-        <button (click)="clearStorage()">Clear LocalStorage</button>
+        <button routerLink="users/:id" (click)="navigate()">Show user</button>
       </div>
     </form>
   </div>
-
-  <div class="container">
-<!--    *ngIf="todoArray.length"-->
-    <p>Todos List:</p>
-    <app-todo
-      *ngFor="let singleTodo of todoArray"
-      [todo]="singleTodo">
-    </app-todo>
-  </div>
 </div>
 
+<router-outlet></router-outlet>

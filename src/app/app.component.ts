@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TodoModel} from './model/todo-model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DataService} from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,13 @@ import {TodoModel} from './model/todo-model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  todoArray: TodoModel[] = [];
-  singleTodo: TodoModel;
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private dataService: DataService) {
     this.form = formBuilder.group({
       id: '',
       title: ['', Validators.required],
@@ -21,34 +23,11 @@ export class AppComponent {
       type: ['', Validators.required],
       status: ''
     });
+    dataService.getState().subscribe(value => console.log('usersList ', value));
   }
 
-  addTodo() {
-    this.singleTodo = {...this.form.value};
-    this.singleTodo.id = this.todoArray.length;
-    this.todoArray.push(this.singleTodo);
-    this.form.reset();
-  }
-
-  loadList() {
-    const loadList = JSON.parse(localStorage.getItem('todosList'));
-    if (!loadList) {
-      return alert('Nothing to load');
-    } else {
-      this.todoArray = [...loadList];
-      console.log(this.todoArray);
-    }
-  }
-
-  saveList() {
-    if (this.todoArray.length === 0) {
-      alert('Nothing to save');
-    } else {
-      localStorage.setItem('todosList', JSON.stringify(this.todoArray));
-    }
-  }
-
-  clearStorage() {
-    localStorage.clear();
+  navigate() {
+    // changes url to localhost/users/:id
+    this.router.navigate(['users', this.form.value.id], {relativeTo: this.activatedRoute});
   }
 }
